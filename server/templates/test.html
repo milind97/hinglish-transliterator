@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<body>
+
+Enter the text: <input type="text" id="myText" onkeyup="myFunction()">
+
+
+<p id="demo"></p>
+<p id="test"></p>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myText").value;
+    document.getElementById("demo").innerHTML = x;
+    
+    var i,word;
+	//for (i = 0; i < x.length; i++) { 
+    	if (x[x.length-1] == " ")
+    	{
+    		console.log(x);
+    		convert(x);
+    	}	
+}
+//base_url = "http://192.168.43.65:5000"
+part_url = "/convert"
+
+
+function convert(text)
+{
+	//document.getElementById("test").innerHTML = x;
+	console.log(text);
+obj = {
+"text": text
+};
+console.log(obj);
+/*
+$.ajax({
+  url:part_url,
+  type:"GET",
+  data:obj,
+  contentType:"application/json; charset=utf-8",
+  dataType:"json",
+  success: function(data,status){
+  console.log(data);
+  //alert("hiiiiii");
+  }
+});
+*/
+$.get(part_url,
+obj,
+function(data, status){
+console.log(data);
+//alert("Data: " + data + "\nStatus: " + status);
+});
+
+
+/*
+$.post(part_url,
+obj,
+function(data, status){
+alert("Data: " + data + "\nStatus: " + status);
+});
+*/
+}
+
+</script>
+
+</body>
+</html>
