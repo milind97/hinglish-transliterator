@@ -13,14 +13,15 @@ Enter the text: <input type="text" id="myText" onkeyup="myFunction()">
 function myFunction() {
     var x = document.getElementById("myText").value;
     document.getElementById("demo").innerHTML = x;
-    
+
     var i,word;
-	//for (i = 0; i < x.length; i++) { 
-    	if (x[x.length-1] == " ")
+	//for (i = 0; i < x.length; i++) {
+    	/*if (x[x.length-1] == " ")
     	{
     		console.log(x);
     		convert(x);
-    	}	
+    	}*/
+    	convert(x)
 }
 //base_url = "http://192.168.43.65:5000"
 part_url = "/convert"
@@ -51,6 +52,7 @@ $.get(part_url,
 obj,
 function(data, status){
 console.log(data);
+document.getElementById("test").innerHTML = data;
 //alert("Data: " + data + "\nStatus: " + status);
 });
 
