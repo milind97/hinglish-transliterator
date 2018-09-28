@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+<title></title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="http://api.jquery.com/scripts/events.js"></script>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript">
+google.load("language", "1");
+
+</script>
+</head>
+<body>
+<form id="form1" runat="server">
+
+
+<asp:TextBox ID="target" runat="server">
+
+
+
+
+<asp:TextBox ID="transliteration" runat="server">
+
+
+</form>
+
+
+<script type="text/javascript">
+
+$("#target").keyup(function (event) {
+
+var str = $("#target").val().toString();
+var a = str.split(' ');
+
+google.language.transliterate(a, "en", "hi", function (result) {
+var container = document.getElementById("transliteration");
+
+var data = "";
+for (var i = 0; i < result.transliterations.length; i++) {
+data = data + " " + result.transliterations[i].transliteratedWords[0];
+}
+container.innerText = data;;
+});
+
+});
+</script>
+</body>
+</html>
