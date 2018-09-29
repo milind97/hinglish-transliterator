@@ -20,6 +20,11 @@ def send_css(path):
     print("css paath: " + path)
     return send_from_directory('templates/css', path)
 
+@app.route('/images/<path:path>')
+def send_images(path):
+    print("images paath: " + path)
+    return send_from_directory('templates/images', path)
+
 @app.route("/")
 def index():
     return render_template("./test.html")
