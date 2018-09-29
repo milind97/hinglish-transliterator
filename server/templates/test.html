@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!--<script src="req_res.js"></script>-->
 <body>
 
-Enter the text: <input type="text" id="myText" onkeyup="myFunction()">
+Enter the text: <input type="text" id="myText" onkeyup="textChange()">
 
 
 <p id="demo"></p>
 <p id="test"></p>
 
 <script>
-function myFunction() {
+    function textChange() {
     var x = document.getElementById("myText").value;
     document.getElementById("demo").innerHTML = x;
 
@@ -26,44 +28,29 @@ function myFunction() {
 //base_url = "http://192.168.43.65:5000"
 part_url = "/convert"
 
-
 function convert(text)
 {
 	//document.getElementById("test").innerHTML = x;
 	console.log(text);
 obj = {
-"text": text
+"text": text,
+"flag":1
 };
-console.log(obj);
-/*
+//console.log(obj);
 $.ajax({
   url:part_url,
-  type:"GET",
-  data:obj,
+  type:"POST",
+  data:JSON.stringify(obj),
   contentType:"application/json; charset=utf-8",
   dataType:"json",
-  success: function(data,status){
-  console.log(data);
-  //alert("hiiiiii");
-  }
-});
-*/
-$.get(part_url,
-obj,
-function(data, status){
-console.log(data);
-document.getElementById("test").innerHTML = data;
-//alert("Data: " + data + "\nStatus: " + status);
+  success: function(data){
+    document.getElementById("test").innerHTML = data;
+  },
+  error: function(error) {
+     console.log(error);
+   }
 });
 
-
-/*
-$.post(part_url,
-obj,
-function(data, status){
-alert("Data: " + data + "\nStatus: " + status);
-});
-*/
 }
 
 </script>

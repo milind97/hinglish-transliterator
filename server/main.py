@@ -6,6 +6,8 @@ from translator import translate
 import enchant
 from langid.langid import LanguageIdentifier, model
 
+import json
+
 app = Flask(__name__)
 
 
@@ -16,18 +18,25 @@ def index():
 
 @app.route("/convert",methods=['POST','GET'])
 def convert_():
-    req_data = request.args
+    req_data = None
+    if request.method == "POST":
+        # print(req_data)
+        req_data = request.json['text']
+        flag = request.json['flag']
+    # print(req_data)
     # print(req_data['text'])
     # text = "Ayush"
-    text = req_data['text'].split()[-1]
+    # text = req_data['text'].split()[-1]
+    text = req_data
     print(text)
     # from here the function will be called which will check and convert the text
-    text = translate(trn, text, eng_dict, hin_dict, classifier)
+    text = translate(trn, text, eng_dict, hin_dict, classifier,flag)
     print(text)
-    res = make_response(text,200)
-    res.headers['Content-Type'] = 'text/plain'
+
+    # res = make_response({"lists":text},200)
+    # res.headers['Content-Type'] = 'application/json'
     # res.headers['Content-Type'] = 'text/plain'
-    return res
+    return json.dumps({"lists":text})
 
 
 if __name__ == "__main__":
