@@ -1,5 +1,5 @@
     function textChange() {
-    var x = document.getElementById("myText").value;
+    var x = document.getElementById("myInput").value;
     document.getElementById("demo").innerHTML = x;
 
     var i,word;

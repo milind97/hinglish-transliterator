@@ -2,3 +2,4 @@ flaskvue/
 venv/
 .idea/
 myenv/
+server/__pycache__/
