@@ -9,19 +9,20 @@ function textChange() {
     		console.log(x);
     		convert(x);
     	}*/
-    	convert(x)
+    	convert(x);
 }
 //base_url = "http://192.168.43.65:5000"
-part_url = "/convert"
+part_url = "/convert";
 
 function convert(text)
 {
 	//document.getElementById("test").innerHTML = x;
-	console.log(text);
+	console.log("Text: " + text);
 obj = {
-"text": text
+"text": text,
+"flag":1
 };
-//console.log(obj);
+console.log(obj);
 $.ajax({
   url:part_url,
   type:"POST",

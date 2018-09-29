@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask import request, make_response
+from flask import request, make_response, send_from_directory
 from indictrans import Transliterator
 from translator import translate
 
@@ -8,8 +8,12 @@ from langid.langid import LanguageIdentifier, model
 
 import json
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
+@app.route('/js/<path:path>')
+def send_js(path):
+    print("paath: " + path)
+    return send_from_directory('js', path)
 
 @app.route("/")
 def index():
@@ -23,6 +27,7 @@ def convert_():
         # print(req_data)
         req_data = request.json['text']
         flag = request.json['flag']
+        # print(flag)
     # print(req_data)
     # print(req_data['text'])
     # text = "Ayush"
