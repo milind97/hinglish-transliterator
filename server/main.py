@@ -15,6 +15,11 @@ def send_js(path):
     print("paath: " + path)
     return send_from_directory('templates/js', path)
 
+@app.route('/css/<path:path>')
+def send_css(path):
+    print("css paath: " + path)
+    return send_from_directory('templates/css', path)
+
 @app.route("/")
 def index():
     return render_template("./test.html")
