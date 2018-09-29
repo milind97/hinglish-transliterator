@@ -21,12 +21,10 @@ def translate(trans_obj, word, eng_dict, hin_dict, classifier, flag):
     suggested_words = [[hindi_word, 1]]
     print('s', suggested_words)
     prob = classifier.classify(word)
-    if not flag:
-        if eng_dict.check(word) or (prob[0] == 'en' and prob[1] > 0.5):
-            print('here')
-            suggested_words = [[word, 0]] + suggested_words
-            print('s', suggested_words)
-
+    if not flag and (eng_dict.check(word) or (prob[0] == 'en' and prob[1] > 0.5)):
+        print('here')
+        suggested_words = [[word, 0]] + suggested_words
+        print('s', suggested_words)
     else:
         suggested_words.append([word, 0])
     print(suggested_words)

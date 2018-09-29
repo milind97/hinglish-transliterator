@@ -1,4 +1,4 @@
-function textChange() {
+    function textChange() {
     var x = document.getElementById("myText").value;
     document.getElementById("demo").innerHTML = x;
 
@@ -9,7 +9,11 @@ function textChange() {
     		console.log(x);
     		convert(x);
     	}*/
-    	convert(x);
+    	if (x !== ""){
+    	  words = x.split(" ");
+    	convert(words[words.length-1]);
+      }
+
 }
 //base_url = "http://192.168.43.65:5000"
 part_url = "/convert";
@@ -29,8 +33,15 @@ $.ajax({
   data:JSON.stringify(obj),
   contentType:"application/json; charset=utf-8",
   dataType:"json",
-  success: function(data){
-    document.getElementById("test").innerHTML = data;
+  success: function(json_data){
+    array = json_data['lists']
+    console.log(array)
+    all_words = [];
+    for(i = 0; i < array.length; i++){
+      all_words.push(array[i][0]);
+    }
+    console.log(all_words);
+    document.getElementById("test").innerHTML = all_words;
   },
   error: function(error) {
      console.log(error);
