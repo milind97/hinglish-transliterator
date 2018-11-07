@@ -7,13 +7,6 @@ body {
   font: 16px Arial;
 }
 
-h1{
-    margin-left: 450px;
-    font-family: monospace;
-    color: white;
-    size: 200px;
-}
-
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
@@ -68,6 +61,13 @@ input[type=submit] {
   color: #ffffff;
 }
 
+h1{
+    /*for title of application*/
+    margin-left: 450px;
+    font-family: monospace;
+    color: white;
+    size: 200px;
+}
 
 div.wrapper {
     margin-top: 250px;
