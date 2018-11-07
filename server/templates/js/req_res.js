@@ -1,5 +1,3 @@
-arr = [];
-prev_value = "";
 currentFocus = -1;
 
 function autocomplete(inp) {
@@ -33,14 +31,14 @@ function autocomplete(inp) {
       }
       /*and simulate a click on the "active" item:*/
       //                 if (x) x[currentFocus].click();
-      var ip = document.getElementById('myInput');
-      //                console.log('current focus text: ' + ip.value.split(' '));
-      prev_text_array = ip.value.split(' ').slice(0, -1);
+      var input_element = document.getElementById('inputTextElement');
+
+      prev_text_array = input_element.value.split(' ').slice(0, -1);
       prev_text = '';
-      for (index in ip.value.split(' ').slice(0, -1)) {
+      for (index in input_element.value.split(' ').slice(0, -1)) {
         prev_text += prev_text_array[index] + ' ';
       }
-      ip.value = prev_text + x[currentFocus].innerText;
+      input_element.value = prev_text + x[currentFocus].innerText;
       flag = array[currentFocus][1];
       closeAllLists(x);
     }
@@ -81,15 +79,15 @@ function autocomplete(inp) {
 
 function textChange() {
   /*a function to handle change in input text box: */
-  var x = document.getElementById("myInput").value;
+  var input_text = document.getElementById("inputTextElement").value;
 
-  if (x !== "") {
-    words = x.split(" ");
+  if (input_text !== "") {
+    words = input_text.split(" ");
     convert(words[words.length - 1]);
   }
 }
 
-autocomplete(document.getElementById("myInput"), arr);
+autocomplete(document.getElementById("inputTextElement"));
 
 //base_url = "http://127.0.0.1:5000"
 var array = [];
@@ -100,7 +98,7 @@ function convert(text) {
   /*a function to send input text to server in form of ajax request and recieve transliterated text: */
 
   //	console.log("Text: " + text);
-  prev_value = text;
+
   /*JSON object to containing input text and a flag be sent to the server: */
   obj = {
     "text": text,
@@ -108,7 +106,7 @@ function convert(text) {
   };
 
   $.ajax({
-    /*to send AJAX request to the server */
+    /*to send AJAX request to the server: */
     url: part_url,
     type: "POST",
     data: JSON.stringify(obj),
@@ -120,9 +118,7 @@ function convert(text) {
       for (i = 0; i < array.length; i++) {
         all_words.push(array[i][0]);
       }
-      //        console.log(all_words);
-      //document.getElementById("test").innerHTML = all_words;
-      suggest_list(document.getElementById("myInput"), all_words);
+      suggest_list(document.getElementById("inputTextElement"), all_words);
     },
     error: function (error) {
       console.log(error);
@@ -145,7 +141,9 @@ function suggest_list(ipTag, arr) {
   var a, b, i, val = ipTag.value;
   /*close any already open lists of autocompleted values*/
   closeAllLists(ipTag);
-  if (!val) { return false; }
+  if (!val) {
+    return false;
+  }
   currentFocus = -1;
   /*create a DIV element that will contain the items (values):*/
   a = document.createElement("DIV");
