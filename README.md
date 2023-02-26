@@ -13,3 +13,4 @@ Use `pip install` to install these python libraries(Use python 3.5+):
 Web page:
 ![Home Page](server/templates/images/sample_transliteration.gif)
 
+Hackindore presentation: https://docs.google.com/presentation/d/1_9jxI1hmJnfad231SLEMRJaa1EDiiK4AkGx6C31rg2k/edit?usp=share_link
